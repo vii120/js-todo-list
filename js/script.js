@@ -37,7 +37,7 @@ addPlan.onkeydown = function(event) {
 addBtn.onclick = function(){
   var newPlan = document.createElement('div');
   if (addPlan.value !== ""){
-    newPlan.className = "item";
+    colorStatus=='day'? newPlan.className="item":newPlan.className="item night";
     newPlan.innerHTML = addPlan.value;
     itemBox.appendChild(newPlan);
     addPlan.value = '';
