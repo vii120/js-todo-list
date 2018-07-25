@@ -22,7 +22,7 @@
 //----------------
 $bg-color: #eeeaf4;
 $day-color: #b6adcb, #e8e3f0;
-$night-color: #5c4a6f, #879;
+$night-color: #5c4a6f, #a191b1;
 
 $day-color-1st: nth($day-color, 1);
 $day-color-2nd: nth($day-color, 2);
@@ -46,7 +46,7 @@ $danger-color: red;
   height:24px;
   line-height:16px;
   text-align:center;
-  color:$check-color;
+  color:$day-color-1st;
   border:3px solid;
   border-radius:50%;
   font-weight:600;
@@ -147,7 +147,7 @@ body{
     #plan{
       margin-bottom:16px;
       border:none;
-      border-radius:8px;
+      border-radius:16px;
       max-width:200px;
       padding:8px 16px;
       font-size:16px;
@@ -155,7 +155,7 @@ body{
     #btn{
       border:none;
       background-color: $day-color-2nd;
-      border-radius:8px;
+      border-radius:16px;
       font-size:18px;
       height:36px;
       margin-left:8px;
@@ -176,13 +176,9 @@ body{
     background-color: $day-color-2nd;
     transition:all .2s;
     cursor:pointer;
-    opacity:0.8;
-    &:hover{
-      // background-color: $day-color-1st;
-      opacity:1;
-    }
     &.night{
       background-color: $night-color-2nd;
+      span{ color:#fff; }
     }
     .check{
       @include check-icon;
@@ -193,7 +189,7 @@ body{
     }
     &.finished{
       text-decoration:line-through;
-      opacity:0.3;
+      // opacity:0.3;
       .check{
         @include check-status($success-color);
       }
