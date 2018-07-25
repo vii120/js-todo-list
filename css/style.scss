@@ -1,0 +1,225 @@
+/*---------------------*/
+/* $Catalog
+/*---------------------*/
+/* $Catalog
+/* $Font
+/* $Global
+/* $List Box
+/* $
+/* $
+/* $
+/*---------------------*/
+
+/*---------------------*/
+/* $Font
+/*---------------------*/
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+//*---------------------*/
+//* $SCSS custom setting
+//*---------------------*/
+// Variables
+//----------------
+$bg-color: #eeeaf4;
+$day-color: #b6adcb, #e8e3f0;
+$night-color: #5c4a6f, #879;
+
+$day-color-1st: nth($day-color, 1);
+$day-color-2nd: nth($day-color, 2);
+$day-color-submit: nth($night-color, 1);
+
+$night-color-1st: nth($night-color, 1);
+$night-color-2nd: nth($night-color, 2);
+$night-color-submit: nth($day-color, 1);
+
+$check-color: nth($day-color, 1);
+$success-color: green;
+$danger-color: red;
+
+// Check icon
+//----------------
+@mixin check-icon{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  width:24px;
+  height:24px;
+  line-height:16px;
+  text-align:center;
+  color:$check-color;
+  border:3px solid;
+  border-radius:50%;
+  font-weight:600;
+  transition:all .2s;
+}
+@mixin check-status($color){
+  color: $color;
+  border-color: $color;
+}
+
+/*---------------------*/
+/* $Global
+/*---------------------*/
+*{
+  box-sizing:border-box;
+  position:relative;
+}
+body{
+  margin:0;
+  padding:0;
+  width:100%;
+  height:100%;
+  font-family: 'Lato', sans-serif;
+}
+#change{z-index:500;}
+.bg{
+  position: fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background-color: $bg-color;
+}
+.container{
+  max-width:1140px;
+  margin:0 auto;
+  padding:0 16px;
+}
+.outer{
+  max-width: 360px;
+  margin:0 auto;
+  margin-top:30px;
+  padding-top:48px;
+  // overflow: hidden;
+}
+/*---------------------*/
+/* $Switch color
+/*---------------------*/
+.switch-box{
+  position: absolute;
+  top:0;
+  right:0;
+  width:70px;
+  height:40px;
+  border-radius: 20px;
+  border:2px solid $day-color-1st;
+  cursor:pointer;
+  .switch-btn{
+    background-color: $day-color-1st;
+    width:30px;
+    height:30px;
+    border-radius: 50%;
+    position: absolute;
+    top:50%;
+    left:5px;
+    transform:translateY(-50%);
+    transition:all .2s;
+  }
+  &.night{
+    border-color: $night-color-1st;
+    .switch-btn{
+      background-color: $night-color-1st;
+      left:calc(100% - 30px - 5px);
+    } 
+  }
+}
+/*---------------------*/
+/* $List Box
+/*---------------------*/
+.box{
+  width:100%;
+  text-align:center;
+  box-shadow: 5px 5px 12px rgba(0,0,0,0.5);
+  background-color: $day-color-1st; 
+  border-radius:16px;
+  overflow:hidden;
+  transition:all .2s;
+  &.night{
+    background-color: $night-color-1st; 
+    color:#fff;
+  }
+  //* header *//
+  .header{
+    h3{
+      font-size:28px;
+      margin:12px auto; 
+    }
+    #plan{
+      margin-bottom:16px;
+      border:none;
+      border-radius:8px;
+      max-width:200px;
+      padding:8px 16px;
+      font-size:16px;
+    }
+    #btn{
+      border:none;
+      background-color: $day-color-2nd;
+      border-radius:8px;
+      font-size:18px;
+      height:36px;
+      margin-left:8px;
+      cursor:pointer;
+      transition:all .2s;
+      &.night{
+        background-color: $night-color-2nd;
+        color:#fff;
+      }
+      i{ margin-right: 8px; }
+    }
+  }
+  //* list *//
+  .item{
+    text-align:left;
+    padding:16px 0;
+    padding-left:24px;
+    background-color: $day-color-2nd;
+    transition:all .2s;
+    cursor:pointer;
+    opacity:0.8;
+    &:hover{
+      // background-color: $day-color-1st;
+      opacity:1;
+    }
+    &.night{
+      background-color: $night-color-2nd;
+    }
+    .check{
+      @include check-icon;
+      right:calc(16px * 2 + 24px);
+      &:hover{
+        @include check-status($success-color);
+      }
+    }
+    &.finished{
+      text-decoration:line-through;
+      opacity:0.3;
+      .check{
+        @include check-status($success-color);
+      }
+    }
+    .deleted{
+      @include check-icon;
+      right:16px;
+      &:hover{
+        @include check-status($danger-color);
+      }
+    }
+  }
+}
+
+@media (max-width:576px){
+  .box{
+    .header{
+      #plan{
+        margin-bottom: 8px;
+      }
+      #btn{
+        display:block;
+        margin:0 auto;
+        margin-bottom: 8px;
+      }
+    }
+  }
+      
+}

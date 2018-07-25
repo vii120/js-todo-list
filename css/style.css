@@ -1,0 +1,208 @@
+/*---------------------*/
+/* $Catalog
+/*---------------------*/
+/* $Catalog
+/* $Font
+/* $Global
+/* $List Box
+/* $
+/* $
+/* $
+/*---------------------*/
+/*---------------------*/
+/* $Font
+/*---------------------*/
+@import url("https://fonts.googleapis.com/css?family=Lato");
+/*---------------------*/
+/* $Global
+/*---------------------*/
+* {
+  box-sizing: border-box;
+  position: relative;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: 'Lato', sans-serif;
+}
+
+#change {
+  z-index: 500;
+}
+
+.bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #eeeaf4;
+}
+
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.outer {
+  max-width: 360px;
+  margin: 0 auto;
+  margin-top: 30px;
+  padding-top: 48px;
+}
+
+/*---------------------*/
+/* $Switch color
+/*---------------------*/
+.switch-box {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 70px;
+  height: 40px;
+  border-radius: 20px;
+  border: 2px solid #b6adcb;
+  cursor: pointer;
+}
+.switch-box .switch-btn {
+  background-color: #b6adcb;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  transform: translateY(-50%);
+  transition: all .2s;
+}
+.switch-box.night {
+  border-color: #5c4a6f;
+}
+.switch-box.night .switch-btn {
+  background-color: #5c4a6f;
+  left: calc(100% - 30px - 5px);
+}
+
+/*---------------------*/
+/* $List Box
+/*---------------------*/
+.box {
+  width: 100%;
+  text-align: center;
+  box-shadow: 5px 5px 12px rgba(0, 0, 0, 0.5);
+  background-color: #b6adcb;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all .2s;
+}
+.box.night {
+  background-color: #5c4a6f;
+  color: #fff;
+}
+.box .header h3 {
+  font-size: 28px;
+  margin: 12px auto;
+}
+.box .header #plan {
+  margin-bottom: 16px;
+  border: none;
+  border-radius: 8px;
+  max-width: 200px;
+  padding: 8px 16px;
+  font-size: 16px;
+}
+.box .header #btn {
+  border: none;
+  background-color: #e8e3f0;
+  border-radius: 8px;
+  font-size: 18px;
+  height: 36px;
+  margin-left: 8px;
+  cursor: pointer;
+  transition: all .2s;
+}
+.box .header #btn.night {
+  background-color: #879;
+  color: #fff;
+}
+.box .header #btn i {
+  margin-right: 8px;
+}
+.box .item {
+  text-align: left;
+  padding: 16px 0;
+  padding-left: 24px;
+  background-color: #e8e3f0;
+  transition: all .2s;
+  cursor: pointer;
+  opacity: 0.8;
+}
+.box .item:hover {
+  opacity: 1;
+}
+.box .item.night {
+  background-color: #879;
+}
+.box .item .check {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  line-height: 16px;
+  text-align: center;
+  color: #b6adcb;
+  border: 3px solid;
+  border-radius: 50%;
+  font-weight: 600;
+  transition: all .2s;
+  right: calc(16px * 2 + 24px);
+}
+.box .item .check:hover {
+  color: green;
+  border-color: green;
+}
+.box .item.finished {
+  text-decoration: line-through;
+  opacity: 0.3;
+}
+.box .item.finished .check {
+  color: green;
+  border-color: green;
+}
+.box .item .deleted {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  line-height: 16px;
+  text-align: center;
+  color: #b6adcb;
+  border: 3px solid;
+  border-radius: 50%;
+  font-weight: 600;
+  transition: all .2s;
+  right: 16px;
+}
+.box .item .deleted:hover {
+  color: red;
+  border-color: red;
+}
+
+@media (max-width: 576px) {
+  .box .header #plan {
+    margin-bottom: 8px;
+  }
+  .box .header #btn {
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 8px;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */
