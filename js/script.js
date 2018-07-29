@@ -3,14 +3,50 @@ var addBtn = document.getElementById('btn');
 var itemBox = document.querySelector('.item-box');
 var items = itemBox.getElementsByClassName('item');
 
-var box = document.getElementsByClassName('box')[0];
-var switchBtn = document.getElementsByClassName('switch-box')[0];
+var box = document.querySelector('.box');
+var switchBtn = document.querySelector('.switch-box');
 var colorStatus = 'day';
+var reset = document.querySelector('.reset-btn');
+var editThemeArr = [switchBtn, box, addBtn, reset];
 
+//----------------------
+//localStorage
+//----------------------
+function getItem(){
+  if (localStorage.itemList!==undefined){
+    itemBox.innerHTML = localStorage.getItem('itemList');
+    colorStatus = localStorage.getItem('colorStatus');
+    if (colorStatus=='night'){
+      editThemeArr.forEach(function(item){
+        item.classList.add('night')
+      })
+      Array.prototype.forEach.call(items, item => {
+        item.classList.add('night');
+      });
+    }
+  }
+}
+getItem();
+
+function save(){
+  localStorage.setItem('itemList', itemBox.innerHTML);
+  localStorage.setItem('colorStatus', colorStatus);
+}
+// console.log(window.localStorage);
+
+reset.onclick = function(){
+  if (confirm('Do you want to reset the whole list?')){
+    localStorage.clear();
+    window.location.reload();
+  }
+}
+
+//----------------------
+//switch theme
+//----------------------
 switchBtn.onclick = function(){
-  let editItem = [switchBtn, box, addBtn];
   if (colorStatus=='day'){
-    editItem.forEach(function(item){
+    editThemeArr.forEach(function(item){
       item.classList.add('night')
     })
     for (let i=0; i<items.length; i++){
@@ -18,7 +54,7 @@ switchBtn.onclick = function(){
     }
     colorStatus = 'night';
   } else {
-    editItem.forEach(function(item){
+    editThemeArr.forEach(function(item){
       item.classList.remove('night')
     })
     for (let i=0; i<items.length; i++){
@@ -26,14 +62,17 @@ switchBtn.onclick = function(){
     }
     colorStatus = 'day';
   }
+  save();
 }
 
+//----------------------
+//add list
+//----------------------
 addPlan.onkeydown = function(event) {
   if (event.keyCode === 13) {
     addBtn.onclick();
   }
 }
-
 addBtn.onclick = function(){
   var newPlan = document.createElement('div');
   if (addPlan.value !== ""){
@@ -43,11 +82,16 @@ addBtn.onclick = function(){
     addPlan.value = '';
     modify(newPlan);
   }
+  countNum();
+  save();
 }
 
-for (var i=0; i<items.length; i++){
-  modify(items[i]);
-}
+//----------------------
+//add function btn
+//----------------------
+Array.prototype.forEach.call(items, item=>{
+  modify(item);
+})
 
 function modify(item){
   //check box
@@ -61,11 +105,13 @@ function modify(item){
     if (isCheck){
       item.classList.remove("finished");
     } else {
-      item.className += " finished";
+      item.classList.add("finished");
     }
     isCheck = !isCheck;
+    countNum();
+    save();
   }
-  
+
   //delete box
   var deleted = document.createElement('span');
   deleted.className = "deleted";
@@ -73,7 +119,24 @@ function modify(item){
   item.appendChild(deleted);
 
   deleted.onclick = function(){
-    itemBox.removeChild(item);
+    let text = item.innerText.substr(0,item.innerText.length-2);
+    if (confirm(`Do you want to delete "${text}"?`)){
+      itemBox.removeChild(item)
+    }
+    countNum();
+    save();
   }
 }
+
+//----------------------
+//completed counter
+//----------------------
+function countNum(){
+  items = itemBox.getElementsByClassName('item');
+  let finished = itemBox.getElementsByClassName('finished');
+  let count = document.querySelector('.itemCount').getElementsByTagName('span')[0];
+  let num = items.length - finished.length;
+  count.innerHTML = num;
+}
+countNum();
 

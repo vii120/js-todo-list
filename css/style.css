@@ -5,9 +5,6 @@
 /* $Font
 /* $Global
 /* $List Box
-/* $
-/* $
-/* $
 /*---------------------*/
 /*---------------------*/
 /* $Font
@@ -110,6 +107,7 @@ body {
 .box .header #plan {
   margin-bottom: 16px;
   border: none;
+  outline: none;
   border-radius: 16px;
   max-width: 200px;
   padding: 8px 16px;
@@ -117,10 +115,11 @@ body {
 }
 .box .header #btn {
   border: none;
+  outline: none;
   background-color: #e8e3f0;
   border-radius: 16px;
-  font-size: 18px;
-  height: 36px;
+  font-size: 16px;
+  padding: 8px 12px;
   margin-left: 8px;
   cursor: pointer;
   transition: all .2s;
@@ -138,7 +137,6 @@ body {
   padding-left: 24px;
   background-color: #e8e3f0;
   transition: all .2s;
-  cursor: pointer;
 }
 .box .item.night {
   background-color: #a191b1;
@@ -158,6 +156,8 @@ body {
   border: 3px solid;
   border-radius: 50%;
   font-weight: 600;
+  user-select: none;
+  cursor: pointer;
   transition: all .2s;
   right: calc(16px * 2 + 24px);
 }
@@ -184,12 +184,20 @@ body {
   border: 3px solid;
   border-radius: 50%;
   font-weight: 600;
+  user-select: none;
+  cursor: pointer;
   transition: all .2s;
   right: 16px;
 }
 .box .item .deleted:hover {
   color: red;
   border-color: red;
+}
+.box .itemCount {
+  padding: 12px 0;
+}
+.box .itemCount span {
+  font-weight: bold;
 }
 
 @media (max-width: 576px) {
@@ -201,6 +209,28 @@ body {
     margin: 0 auto;
     margin-bottom: 8px;
   }
+}
+/*---------------------*/
+/* $Reset btn
+/*---------------------*/
+.reset-btn {
+  display: block;
+  border: none;
+  outline: none;
+  border-radius: 8px;
+  padding: 12px 0;
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 16px;
+  font-size: 16px;
+  background-color: #b6adcb;
+  cursor: pointer;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.4);
+  transition: all .2s;
+}
+.reset-btn.night {
+  background-color: #5c4a6f;
+  color: #fff;
 }
 
 /*# sourceMappingURL=style.css.map */
